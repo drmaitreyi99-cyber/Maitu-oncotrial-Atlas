@@ -17,42 +17,58 @@
     thoracic: { name: "Lung", organs: ["nsclc", "sclc"] },
     gi: { name: "Gastrointestinal", organs: ["esophageal", "gastric", "colorectal", "pancreatic", "hcc", "biliary"] },
     gyn: { name: "Gynaecologic", organs: ["ovarian", "cervical", "endometrial"] },
-    gu: { name: "Genitourinary", organs: ["prostate", "rcc", "urothelial"] },
-    head: { name: "Head, neck and skin", organs: ["head-neck", "melanoma"] },
-    rare: { name: "Sarcoma, CNS and NET", organs: ["sarcoma", "gist", "glioma", "net"] },
-    heme: { name: "Haematologic", organs: ["dlbcl", "hodgkin", "myeloma", "aml", "all-skip", "cml", "cll"] },
+    gu: { name: "Genitourinary", organs: ["prostate", "rcc", "urothelial", "testicular"] },
+    head: { name: "Head, neck, thyroid and skin", organs: ["head-neck", "thyroid", "melanoma"] },
+    rare: { name: "Sarcoma, CNS, NET and tumour-agnostic", organs: ["sarcoma", "gist", "glioma", "net", "agnostic"] },
+    heme: { name: "Haematologic", organs: ["dlbcl", "hodgkin", "myeloma", "aml", "all", "cml", "cll"] },
   };
-  GROUPS.heme.organs = ["dlbcl", "hodgkin", "myeloma", "aml", "cml", "cll"];
 
   const DISEASES = {
-    breast: { name: "Breast cancer", short: "Breast", group: "breast", blurb: "HER2-positive, hormone-receptor-positive, and triple-negative disease, in early and metastatic settings." },
-    nsclc: { name: "Non-small-cell lung cancer", short: "NSCLC", group: "thoracic", blurb: "Driver-oncogene therapy, immunotherapy, and stage III consolidation." },
-    sclc: { name: "Small-cell lung cancer", short: "SCLC", group: "thoracic", blurb: "First-line chemo-immunotherapy for extensive-stage disease." },
-    esophageal: { name: "Esophageal and GEJ cancer", short: "Esophagus", group: "gi", blurb: "Preoperative chemoradiotherapy and adjuvant immunotherapy after resection." },
-    gastric: { name: "Gastric and GEJ adenocarcinoma", short: "Gastric", group: "gi", blurb: "Perioperative chemotherapy and first-line therapy for advanced disease." },
-    colorectal: { name: "Colorectal cancer", short: "Colorectal", group: "gi", blurb: "Adjuvant oxaliplatin and biomarker-selected therapy for advanced disease." },
-    pancreatic: { name: "Pancreatic cancer", short: "Pancreas", group: "gi", blurb: "Adjuvant combination chemotherapy and maintenance therapy." },
-    hcc: { name: "Hepatocellular carcinoma", short: "HCC", group: "gi", blurb: "First-line immunotherapy combinations for unresectable disease." },
-    biliary: { name: "Biliary tract cancer", short: "Biliary", group: "gi", blurb: "Gemcitabine plus cisplatin as the reference cytotoxic comparison." },
-    ovarian: { name: "Ovarian cancer", short: "Ovary", group: "gyn", blurb: "First-line maintenance after platinum response." },
-    cervical: { name: "Cervical cancer", short: "Cervix", group: "gyn", blurb: "Locally advanced chemoradiotherapy and persistent or metastatic disease." },
-    endometrial: { name: "Endometrial cancer", short: "Endometrium", group: "gyn", blurb: "Immunotherapy added to chemotherapy in primary advanced or recurrent disease." },
-    prostate: { name: "Prostate cancer", short: "Prostate", group: "gu", blurb: "Hormone-sensitive intensification and castration-resistant therapy." },
-    rcc: { name: "Renal cell carcinoma", short: "Kidney", group: "gu", blurb: "First-line immunotherapy combinations for advanced clear-cell disease." },
-    urothelial: { name: "Urothelial carcinoma", short: "Urothelial", group: "gu", blurb: "Maintenance therapy and first-line antibody-drug conjugate combinations." },
-    "head-neck": { name: "Head and neck cancer", short: "Head & neck", group: "head", blurb: "First-line treatment of recurrent or metastatic squamous-cell carcinoma." },
-    melanoma: { name: "Melanoma", short: "Melanoma", group: "head", blurb: "Dual checkpoint blockade and adjuvant immunotherapy." },
-    sarcoma: { name: "Soft-tissue sarcoma", short: "Sarcoma", group: "rare", blurb: "Pazopanib after prior chemotherapy for non-adipocytic sarcoma." },
-    gist: { name: "Gastrointestinal stromal tumour", short: "GIST", group: "rare", blurb: "Imatinib for advanced GIST." },
-    glioma: { name: "Glioblastoma", short: "Glioma", group: "rare", blurb: "Radiotherapy with concomitant and adjuvant temozolomide." },
-    net: { name: "Neuroendocrine tumours", short: "NET", group: "rare", blurb: "Somatostatin analogues and peptide receptor radionuclide therapy." },
-    dlbcl: { name: "Diffuse large B-cell lymphoma", short: "DLBCL", group: "heme", blurb: "Rituximab added to CHOP." },
-    hodgkin: { name: "Hodgkin lymphoma", short: "Hodgkin", group: "heme", blurb: "Brentuximab vedotin with chemotherapy in advanced-stage disease." },
-    myeloma: { name: "Multiple myeloma", short: "Myeloma", group: "heme", blurb: "Daratumumab with lenalidomide and dexamethasone." },
-    aml: { name: "Acute myeloid leukaemia", short: "AML", group: "heme", blurb: "Midostaurin added to chemotherapy for FLT3-mutated AML." },
-    cml: { name: "Chronic myeloid leukaemia", short: "CML", group: "heme", blurb: "Imatinib compared with interferon for newly diagnosed chronic-phase CML." },
-    cll: { name: "Chronic lymphocytic leukaemia", short: "CLL", group: "heme", blurb: "Venetoclax with obinutuzumab in patients with coexisting conditions." },
+    breast: { name: "Breast cancer", short: "Breast", group: "breast", blurb: "HR-positive, HER2-positive, HER2-low, BRCA, PIK3CA, ESR1 and triple-negative trials, from adjuvant tamoxifen to 2026 oral SERDs and ADCs." },
+    nsclc: { name: "Non-small-cell lung cancer", short: "NSCLC", group: "thoracic", blurb: "Screening, adjuvant, stage III and metastatic trials, with EGFR, ALK, ROS1, RET, BRAF, MET, HER2, KRAS and PD-L1 selection." },
+    sclc: { name: "Small-cell lung cancer", short: "SCLC", group: "thoracic", blurb: "Limited and extensive stage: chemo-immunotherapy, consolidation, PCI and DLL3-directed therapy." },
+    esophageal: { name: "Esophageal and GEJ cancer", short: "Esophagus", group: "gi", blurb: "Neoadjuvant chemoradiotherapy, perioperative chemotherapy, adjuvant and first-line immunotherapy by PD-L1." },
+    gastric: { name: "Gastric and GEJ adenocarcinoma", short: "Gastric", group: "gi", blurb: "Perioperative therapy and HER2, Claudin 18.2 and PD-L1-selected treatment for advanced disease." },
+    colorectal: { name: "Colorectal cancer", short: "Colorectal", group: "gi", blurb: "Adjuvant colon, rectal, and metastatic trials selected by RAS, BRAF, KRAS G12C, MSI and PIK3CA." },
+    pancreatic: { name: "Pancreatic cancer", short: "Pancreas", group: "gi", blurb: "Adjuvant chemotherapy, first-line regimens, BRCA maintenance and RAS inhibition." },
+    hcc: { name: "Hepatocellular carcinoma", short: "HCC", group: "gi", blurb: "From sorafenib to first-line immunotherapy combinations for unresectable disease." },
+    biliary: { name: "Biliary tract cancer", short: "Biliary", group: "gi", blurb: "Gemcitabine-cisplatin backbone, immunotherapy, and IDH1 or FGFR2-targeted therapy." },
+    ovarian: { name: "Ovarian cancer", short: "Ovary", group: "gyn", blurb: "Primary chemotherapy, HIPEC, BRCA and HRD-guided PARP maintenance, and FRα-directed therapy." },
+    cervical: { name: "Cervical cancer", short: "Cervix", group: "gyn", blurb: "Surgery, chemoradiotherapy, induction, and immunotherapy or ADCs for recurrent disease." },
+    endometrial: { name: "Endometrial cancer", short: "Endometrium", group: "gyn", blurb: "dMMR/MSI-H and pMMR immunotherapy trials in advanced or recurrent disease." },
+    prostate: { name: "Prostate cancer", short: "Prostate", group: "gu", blurb: "Localised, biochemically recurrent, hormone-sensitive and castration-resistant disease, with HRR and PSMA selection." },
+    rcc: { name: "Renal cell carcinoma", short: "Kidney", group: "gu", blurb: "Adjuvant immunotherapy, first-line combinations and HIF-2α inhibition." },
+    urothelial: { name: "Urothelial carcinoma", short: "Urothelial", group: "gu", blurb: "Perioperative, ctDNA-guided, and metastatic trials, including FGFR3 and HER2 selection." },
+    testicular: { name: "Germ-cell tumours", short: "Germ cell", group: "gu", blurb: "Cisplatin-based chemotherapy for disseminated germ-cell tumours." },
+    "head-neck": { name: "Head and neck cancer", short: "Head & neck", group: "head", blurb: "Organ preservation, postoperative chemoradiotherapy, HPV de-escalation, nasopharynx and immunotherapy." },
+    thyroid: { name: "Thyroid cancer", short: "Thyroid", group: "head", blurb: "Radioiodine-refractory differentiated and RET-mutant medullary thyroid cancer." },
+    melanoma: { name: "Melanoma", short: "Melanoma", group: "head", blurb: "BRAF-targeted therapy, checkpoint inhibitors, neoadjuvant therapy, TIL and uveal melanoma." },
+    sarcoma: { name: "Soft-tissue sarcoma", short: "Sarcoma", group: "rare", blurb: "First-line anthracycline therapy and later-line pazopanib." },
+    gist: { name: "Gastrointestinal stromal tumour", short: "GIST", group: "rare", blurb: "KIT-driven disease: adjuvant duration and lines of kinase inhibitors." },
+    glioma: { name: "Glioma", short: "Glioma", group: "rare", blurb: "Glioblastoma with MGMT, low-grade glioma with IDH, and tumour-treating fields." },
+    net: { name: "Neuroendocrine tumours", short: "NET", group: "rare", blurb: "Somatostatin analogues, targeted therapy and SSTR-directed radioligands." },
+    agnostic: { name: "Tumour-agnostic biomarkers", short: "Agnostic", group: "rare", blurb: "NTRK fusions and MSI-H/dMMR across solid tumours." },
+    dlbcl: { name: "Diffuse large B-cell lymphoma", short: "DLBCL", group: "heme", blurb: "R-CHOP and its successors, and CAR-T as second-line therapy." },
+    hodgkin: { name: "Hodgkin lymphoma", short: "Hodgkin", group: "heme", blurb: "Early-stage de-escalation and CD30 or PD-1-directed therapy in advanced disease." },
+    myeloma: { name: "Multiple myeloma", short: "Myeloma", group: "heme", blurb: "Transplant, quadruplet induction, and BCMA-directed CAR-T and bispecifics." },
+    aml: { name: "Acute myeloid leukaemia", short: "AML", group: "heme", blurb: "FLT3, IDH1 and PML-RARA-directed therapy, and venetoclax-based treatment." },
+    all: { name: "Acute lymphoblastic leukaemia", short: "ALL", group: "heme", blurb: "CD19 and CD22-directed therapy in adult and paediatric B-cell ALL." },
+    cml: { name: "Chronic myeloid leukaemia", short: "CML", group: "heme", blurb: "BCR-ABL1 tyrosine-kinase inhibitors from imatinib to asciminib." },
+    cll: { name: "Chronic lymphocytic leukaemia", short: "CLL", group: "heme", blurb: "BTK inhibitors, venetoclax and fixed-duration combinations." },
   };
+
+  const GUIDELINES = [
+    { name: "NCCN Guidelines", by: "National Comprehensive Cancer Network (USA)", url: "https://www.nccn.org/guidelines/category_1", note: "Treatment guidelines for each cancer type. Free registration is needed to read them." },
+    { name: "NCCN Biomarkers Compendium", by: "National Comprehensive Cancer Network (USA)", url: "https://www.nccn.org/compendia-templates/compendia/biomarkers-compendium", note: "Which biomarker to test, in which cancer, and why." },
+    { name: "ESMO Clinical Practice Guidelines", by: "European Society for Medical Oncology", url: "https://www.esmo.org/guidelines", note: "Guidelines by tumour type, with levels of evidence and grades of recommendation." },
+    { name: "ESMO Living Guidelines", by: "European Society for Medical Oncology", url: "https://www.esmo.org/guidelines/living-guidelines", note: "Treatment algorithms that ESMO updates as new trials are published." },
+    { name: "ESMO-MCBS", by: "European Society for Medical Oncology", url: "https://www.esmo.org/guidelines/esmo-mcbs", note: "The Magnitude of Clinical Benefit Scale, used to grade how much a trial result matters." },
+    { name: "ASCO Guidelines", by: "American Society of Clinical Oncology", url: "https://www.asco.org/practice-patients/guidelines", note: "Evidence-based guidelines and rapid recommendation updates." },
+    { name: "ESGO Guidelines", by: "European Society of Gynaecological Oncology", url: "https://www.esgo.org/explore/guidelines/", note: "Ovarian, endometrial, cervical and vulvar cancer guidelines, several written with ESMO and ESTRO." },
+    { name: "EAU Guidelines", by: "European Association of Urology", url: "https://uroweb.org/guidelines", note: "Prostate, bladder, kidney, upper-tract and testicular cancer." },
+    { name: "ASH Clinical Practice Guidelines", by: "American Society of Hematology", url: "https://www.hematology.org/education/clinicians/guidelines-and-quality-care/clinical-practice-guidelines", note: "Guidelines for haematological cancers and related care." },
+    { name: "European Hematology Association", by: "EHA", url: "https://ehaweb.org/", note: "EHA guidelines and links to ELN recommendations for leukaemia." },
+  ];
 
   const RESULT = {
     POSITIVE: ["Met the reported primary comparison", "pill-good"],
@@ -67,10 +83,21 @@
     ORR: "Objective response", pCR: "Pathological complete response", OTHER: "Reported outcome",
   };
   const STAGE = {
-    early: "Early", "locally-advanced": "Locally advanced", metastatic: "Metastatic",
-    resectable: "Resectable", resected: "After resection", extensive: "Extensive stage",
-    advanced: "Advanced", any: "Any stage",
+    screening: "Screening", early: "Early", limited: "Limited stage", resectable: "Resectable (neoadjuvant / perioperative)",
+    resected: "After resection (adjuvant)", "locally-advanced": "Locally advanced", "newly-diagnosed": "Newly diagnosed",
+    advanced: "Advanced", metastatic: "Metastatic", extensive: "Extensive stage", recurrent: "Recurrent",
+    relapsed: "Relapsed or refractory", any: "Any stage",
   };
+  const STAGE_ORDER = Object.keys(STAGE);
+  const MARKERS = Object.fromEntries((DATA.biomarkers || []).map((b) => [b.slug, b]));
+  function markerName(slug) { return MARKERS[slug] ? MARKERS[slug].name : slug.toUpperCase(); }
+  function byYear(a, b) { return (a.year || 0) - (b.year || 0) || a.acronym.localeCompare(b.acronym); }
+  function firstStage(t) { return (t.stages || []).slice().sort((a, b) => STAGE_ORDER.indexOf(a) - STAGE_ORDER.indexOf(b))[0] || "any"; }
+  function stageGroups(list) {
+    const groups = {};
+    list.forEach((t) => { (groups[firstStage(t)] ||= []).push(t); });
+    return STAGE_ORDER.filter((s) => groups[s]).map((s) => `<section class="stage-group"><h2>${esc(STAGE[s])}</h2><div class="cards">${groups[s].sort(byYear).map(trialCard).join("")}</div></section>`).join("");
+  }
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -82,7 +109,7 @@
   const statusPill = `<span class="pill pill-amber" title="Copied from the PubMed abstract. Not yet checked against the full paper.">Awaiting verification</span>`;
   function trialsFor(disease) { return DATA.trials.filter((t) => t.disease === disease); }
   function pubmed(pmid) { return `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`; }
-  function phaseLabel(p) { return p === "III" || p === "II" || p === "II/III" ? `Phase ${p}` : p; }
+  function phaseLabel(p) { return /^(I|II|III|Ib|I\/II|II\/III)$/.test(p || "") ? `Phase ${p}` : p; }
 
   const SAVED_KEY = "onco-atlas-saved";
   function getSaved() { try { return JSON.parse(localStorage.getItem(SAVED_KEY)) || []; } catch (e) { return []; } }
@@ -95,6 +122,7 @@
       <h3>${esc(t.acronym)}</h3>
       <p class="sub">${esc(t.setting)}</p>
       <div>${resultPill(t.result)}</div>
+      ${(t.biomarkers || []).length ? `<div class="marker-pills">${t.biomarkers.map((b) => `<span class="pill pill-neutral">${esc(markerName(b))}</span>`).join("")}</div>` : ""}
       <p class="meta tabular">${t.year} · ${esc(phaseLabel(t.phase))}</p>
     </a>`;
   }
@@ -117,17 +145,20 @@
         <p class="lead">PICO, drugs, and doses for landmark studies across cancers. Every result number is a sentence from the PubMed abstract, with a link to the paper.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#breast">Start with breast</a>
+          <a class="btn" href="#biomarkers">Browse by biomarker</a>
+          <a class="btn" href="#guidelines">Guidelines</a>
           <button class="btn" type="button" data-action="search">Search a trial</button>
         </div>
         <div class="stats tabular">
           <div><b>${DATA.trials.length}</b>trials</div>
           <div><b>${outcomes}</b>quoted results</div>
           <div><b>${Object.keys(DISEASES).length}</b>cancers</div>
+          <div><b>${new Set(DATA.trials.flatMap((t) => t.biomarkers || [])).size}</b>biomarkers</div>
         </div>
       </section>
       ${Object.entries(GROUPS).map(([id, g]) => `
         <section class="section" id="home-${id}">
-          <div class="section-head"><h2>${esc(g.name)}</h2><p>Open a cancer, then filter by stage.</p></div>
+          <div class="section-head"><h2>${esc(g.name)}</h2><p>Open a cancer, then filter by stage or biomarker.</p></div>
           <div class="tiles">${g.organs.map(organTile).join("")}</div>
         </section>`).join("")}
     </div>`;
@@ -143,26 +174,87 @@
     </div>`;
   }
 
-  function renderDisease(slug, filter) {
+  function renderDisease(slug, stage, marker) {
     const d = DISEASES[slug];
     if (!d) return renderNotFound();
     const all = trialsFor(slug);
-    const stages = [...new Set(all.flatMap((t) => t.stages || []))];
-    const shown = filter ? all.filter((t) => (t.stages || []).includes(filter)) : all;
+    const stages = STAGE_ORDER.filter((s) => all.some((t) => (t.stages || []).includes(s)));
+    const markers = [...new Set(all.flatMap((t) => t.biomarkers || []))].sort((a, b) => markerName(a).localeCompare(markerName(b)));
+    const shown = all
+      .filter((t) => !stage || (t.stages || []).includes(stage))
+      .filter((t) => !marker || (marker === "none" ? !(t.biomarkers || []).length : (t.biomarkers || []).includes(marker)));
+    const chip = (attr, value, label, on) => `<button class="chip" type="button" ${attr}="${esc(value)}" aria-pressed="${on}">${esc(label)}</button>`;
     app.innerHTML = `<div class="wrap">
       <a class="back" href="#g-${d.group}">‹ ${esc(GROUPS[d.group].name)}</a>
       <section class="disease-hero bg-${slug}">
-        <p class="eyebrow ink-${slug}">${all.length} trial${all.length === 1 ? "" : "s"}</p>
+        <p class="eyebrow ink-${slug}">${all.length} trial${all.length === 1 ? "" : "s"} · oldest first within each stage</p>
         <h1>${esc(d.name)}</h1>
         <p>${esc(d.blurb)}</p>
       </section>
-      <div class="chips" role="group" aria-label="Filter by stage">
-        <button class="chip" type="button" data-filter="" aria-pressed="${!filter}">All stages</button>
-        ${stages.map((s) => `<button class="chip" type="button" data-filter="${esc(s)}" aria-pressed="${filter === s}">${esc(STAGE[s] || s)}</button>`).join("")}
+      <div class="filter-row" role="group" aria-label="Filter by stage">
+        <span class="filter-label">Stage</span>
+        ${chip("data-stage", "", "All stages", !stage)}
+        ${stages.map((s) => chip("data-stage", s, STAGE[s] || s, stage === s)).join("")}
       </div>
-      ${shown.length ? `<div class="cards">${shown.map(trialCard).join("")}</div>` : `<div class="empty-state"><h3>No trials for this stage yet</h3><p>Choose another stage. This library is a curated set, not every published trial.</p></div>`}
+      ${markers.length ? `<div class="filter-row" role="group" aria-label="Filter by biomarker">
+        <span class="filter-label">Biomarker</span>
+        ${chip("data-marker", "", "All", !marker)}
+        ${markers.map((m) => chip("data-marker", m, markerName(m), marker === m)).join("")}
+        ${chip("data-marker", "none", "Not biomarker-selected", marker === "none")}
+      </div>` : ""}
+      ${!shown.length
+        ? `<div class="empty-state"><h3>No trials match these filters</h3><p>Choose another stage or biomarker. This library is a curated set, not every published trial.</p></div>`
+        : stage ? `<div class="cards">${shown.sort(byYear).map(trialCard).join("")}</div>` : stageGroups(shown)}
     </div>`;
-    app.querySelectorAll("[data-filter]").forEach((b) => b.addEventListener("click", () => renderDisease(slug, b.dataset.filter)));
+    app.querySelectorAll("[data-stage]").forEach((b) => b.addEventListener("click", () => renderDisease(slug, b.dataset.stage, marker)));
+    app.querySelectorAll("[data-marker]").forEach((b) => b.addEventListener("click", () => renderDisease(slug, stage, b.dataset.marker)));
+  }
+
+  function renderBiomarkers() {
+    const counts = {};
+    DATA.trials.forEach((t) => (t.biomarkers || []).forEach((b) => { counts[b] = (counts[b] || 0) + 1; }));
+    const list = (DATA.biomarkers || []).filter((b) => counts[b.slug]);
+    app.innerHTML = `<div class="wrap">
+      <section class="hero" style="padding-bottom:8px"><p class="eyebrow">Biomarkers</p><h1>Trials by biomarker.</h1>
+        <p class="lead">Open a biomarker to see its trials organ by organ and stage by stage, from the oldest paper to the newest.</p></section>
+      <div class="guide-grid">${list.map((b) => `
+        <a class="guide-card" href="#b-${b.slug}" style="text-decoration:none;color:inherit">
+          <h3>${esc(b.name)}</h3><p>${esc(b.summary)}</p>
+          <span class="pill pill-neutral">${counts[b.slug]} trial${counts[b.slug] === 1 ? "" : "s"}</span>
+        </a>`).join("")}</div>
+    </div>`;
+  }
+
+  function renderBiomarker(slug) {
+    const b = MARKERS[slug];
+    const list = DATA.trials.filter((t) => (t.biomarkers || []).includes(slug));
+    if (!b || !list.length) return renderNotFound();
+    const organs = Object.keys(DISEASES).filter((d) => list.some((t) => t.disease === d));
+    app.innerHTML = `<div class="wrap">
+      <a class="back" href="#biomarkers">‹ All biomarkers</a>
+      <section class="hero" style="padding-bottom:8px"><p class="eyebrow">Biomarker · ${list.length} trial${list.length === 1 ? "" : "s"}</p><h1>${esc(b.name)}</h1>
+        <p class="lead">${esc(b.summary)}</p>
+        <div class="organ-links">${organs.map((d) => `<a href="#bm-${d}">${esc(DISEASES[d].short)}</a>`).join("")}</div></section>
+      ${organs.map((d) => `<section class="section" id="bm-${d}">
+        <div class="section-head"><h2><a href="#${d}" style="color:inherit">${esc(DISEASES[d].name)}</a></h2></div>
+        ${stageGroups(list.filter((t) => t.disease === d))}
+      </section>`).join("")}
+    </div>`;
+    app.querySelectorAll(".organ-links a").forEach((a) => a.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById(a.getAttribute("href").slice(1)).scrollIntoView({ behavior: "smooth" });
+    }));
+  }
+
+  function renderGuidelines() {
+    app.innerHTML = `<div class="wrap">
+      <section class="hero" style="padding-bottom:8px"><p class="eyebrow">Guidelines</p><h1>Where practice is decided.</h1>
+        <p class="lead">Trials in this atlas are the evidence. These societies turn that evidence into recommendations. Their guideline text is copyrighted, so this site links to it rather than copying it. Always check the current version.</p></section>
+      <div class="guide-grid">${GUIDELINES.map((g) => `
+        <div class="guide-card"><h3>${esc(g.name)}</h3><p><b>${esc(g.by)}.</b> ${esc(g.note)}</p>
+          <a href="${esc(g.url)}" target="_blank" rel="noopener">Open ${esc(g.name)} ↗</a></div>`).join("")}</div>
+      <p class="note">Trial results on this site come from abstracts in peer-reviewed journals such as the New England Journal of Medicine, The Lancet, The Lancet Oncology, Journal of Clinical Oncology, JAMA, Annals of Oncology and Nature Medicine.</p>
+    </div>`;
   }
 
   function renderTrial(slug, tab) {
@@ -178,6 +270,7 @@
           <span class="pill bg-${t.disease} ink-${t.disease}">${esc(DISEASES[t.disease].short)}</span>
           <span class="pill pill-neutral">${esc(phaseLabel(t.phase))}</span>
           ${(t.stages || []).map((s) => `<span class="pill pill-neutral">${esc(STAGE[s] || s)}</span>`).join("")}
+          ${(t.biomarkers || []).map((b) => `<a class="pill pill-neutral" href="#b-${esc(b)}">${esc(markerName(b))}</a>`).join("")}
           ${resultPill(t.result)} ${statusPill}
         </div>
         <h1>${esc(t.acronym)}</h1>
@@ -274,21 +367,20 @@
       ${t.nct ? `<p class="note">Registered as <a href="https://clinicaltrials.gov/study/${esc(t.nct)}" target="_blank" rel="noopener">${esc(t.nct)} ↗</a></p>` : ""}`;
   }
 
-  function renderTimeline(disease) {
-    const list = disease ? trialsFor(disease) : DATA.trials.slice();
+  function renderTimeline(group) {
+    const list = group ? DATA.trials.filter((t) => DISEASES[t.disease].group === group) : DATA.trials.slice();
     const years = {};
     list.forEach((t) => { (years[t.year] ||= []).push(t); });
     app.innerHTML = `<div class="wrap">
       <section class="hero" style="padding-bottom:8px"><p class="eyebrow">Timeline</p><h1>How the evidence grew.</h1>
-        <p class="lead">Each card is placed in the year of the paper quoted on this site.</p></section>
+        <p class="lead">Each card is placed in the year of the paper quoted on this site, from the earliest landmark to ${esc(Math.max(...DATA.trials.map((t) => t.year || 0)))}.</p></section>
       <div class="chips">
-        <button class="chip" type="button" data-d="" aria-pressed="${!disease}">All</button>
-        ${Object.entries(GROUPS).map(([id, g]) => `<button class="chip" type="button" data-g="${id}">${esc(g.name)}</button>`).join("")}
+        <button class="chip" type="button" data-g="" aria-pressed="${!group}">All</button>
+        ${Object.entries(GROUPS).map(([id, g]) => `<button class="chip" type="button" data-g="${id}" aria-pressed="${group === id}">${esc(g.name)}</button>`).join("")}
       </div>
       <div class="timeline">${Object.keys(years).sort().map((y) => `<div class="year"><h3 class="tabular">${y}</h3><div class="cards">${years[y].map(trialCard).join("")}</div></div>`).join("")}</div>
     </div>`;
-    app.querySelectorAll("[data-d]").forEach((b) => b.addEventListener("click", () => renderTimeline("")));
-    app.querySelectorAll("[data-g]").forEach((b) => b.addEventListener("click", () => renderGroup(b.dataset.g)));
+    app.querySelectorAll("[data-g]").forEach((b) => b.addEventListener("click", () => renderTimeline(b.dataset.g)));
   }
 
   function renderDoses() {
@@ -360,8 +452,8 @@
   function runSearch(q) {
     q = q.trim().toLowerCase();
     if (q.length < 2) { results.innerHTML = `<li class="empty">Type at least two letters.</li>`; return; }
-    const hits = DATA.trials.filter((t) => `${t.acronym} ${t.title} ${t.setting} ${(t.arms || []).map((a) => a.label).join(" ")} ${(t.biomarkers || []).join(" ")}`.toLowerCase().includes(q))
-      .slice(0, 12)
+    const hits = DATA.trials.filter((t) => `${t.acronym} ${t.title} ${t.setting} ${(t.arms || []).map((a) => a.label).join(" ")} ${(t.biomarkers || []).map((b) => `${b} ${markerName(b)}`).join(" ")}`.toLowerCase().includes(q))
+      .slice(0, 20)
       .map((t) => `<li><a href="#t-${t.slug}"><span>${esc(t.acronym)}</span><small>${esc(DISEASES[t.disease].short)} · ${t.year}</small></a></li>`)
       .join("");
     results.innerHTML = hits || `<li class="empty">No match. Try FLAURA, olaparib, or HER2.</li>`;
@@ -386,11 +478,14 @@
     else if (hash === "doses") renderDoses();
     else if (hash === "flashcards") renderFlashcards();
     else if (hash === "saved") renderSaved();
+    else if (hash === "biomarkers") renderBiomarkers();
+    else if (hash.startsWith("b-")) renderBiomarker(hash.slice(2));
+    else if (hash === "guidelines") renderGuidelines();
     else renderNotFound();
 
     const section = hash.startsWith("t-")
       ? (DATA.trials.find((t) => t.slug === hash.slice(2)) && DISEASES[DATA.trials.find((t) => t.slug === hash.slice(2)).disease].group)
-      : (DISEASES[hash] ? DISEASES[hash].group : hash.replace(/^g-/, ""));
+      : (DISEASES[hash] ? DISEASES[hash].group : hash.startsWith("b-") ? "biomarkers" : hash.replace(/^g-/, ""));
     document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === section));
     window.scrollTo(0, 0);
   }

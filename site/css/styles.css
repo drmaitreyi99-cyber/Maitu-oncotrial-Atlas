@@ -47,6 +47,10 @@
   --cll: #ece7ff; --cll-ink: #5b21b6;
   --aml: #ffe4e6; --aml-ink: #be123c;
   --myeloma: #fce7f3; --myeloma-ink: #9d174d;
+  --testicular: #e0f2fe; --testicular-ink: #0c4a6e;
+  --thyroid: #fdf2d0; --thyroid-ink: #854d0e;
+  --all: #fde2f0; --all-ink: #9d174d;
+  --agnostic: #ecebf5; --agnostic-ink: #3f3a63;
   --pico-p: #ffd6ea; --pico-p-ink: #9a2460;
   --pico-i: #d7f6ea; --pico-i-ink: #0e6b4c;
   --pico-c: #e4dcff; --pico-c-ink: #5b3eae;
@@ -88,6 +92,10 @@
     --cll: #241838; --cll-ink: #ddd0ff;
     --aml: #38161a; --aml-ink: #ffc4ca;
     --myeloma: #381628; --myeloma-ink: #ffc6e0;
+    --testicular: #122a38; --testicular-ink: #bae6fd;
+    --thyroid: #332a12; --thyroid-ink: #fde68a;
+    --all: #381628; --all-ink: #fbcfe8;
+    --agnostic: #24222e; --agnostic-ink: #d6d3ea;
     --pico-p: #3a2030; --pico-p-ink: #ffb3d6;
     --pico-i: #123028; --pico-i-ink: #9eebc8;
     --pico-c: #261d3d; --pico-c-ink: #d4c4ff;
@@ -271,6 +279,26 @@ details.quote blockquote { margin: 8px 0 0; padding: 12px; background: var(--bg-
 .bg-cll { background: var(--cll); } .ink-cll { color: var(--cll-ink); }
 .bg-aml { background: var(--aml); } .ink-aml { color: var(--aml-ink); }
 .bg-myeloma { background: var(--myeloma); } .ink-myeloma { color: var(--myeloma-ink); }
+.bg-testicular { background: var(--testicular); } .ink-testicular { color: var(--testicular-ink); }
+.bg-thyroid { background: var(--thyroid); } .ink-thyroid { color: var(--thyroid-ink); }
+.bg-all { background: var(--all); } .ink-all { color: var(--all-ink); }
+.bg-agnostic { background: var(--agnostic); } .ink-agnostic { color: var(--agnostic-ink); }
+
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 10px 0; }
+.filter-row .filter-label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); min-width: 82px; }
+.filter-row .chip { padding: 5px 12px; font-size: 13px; }
+.filter-row + .cards, .filter-row + .empty-state, .filter-row + .stage-group { margin-top: 18px; }
+.stage-group { margin-top: 26px; }
+.stage-group > h2 { font-size: 18px; margin: 0 0 12px; color: var(--ink-2); font-weight: 600; }
+.marker-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.marker-pills .pill { font-size: 11px; }
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 18px; }
+.guide-card { border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: var(--bg); }
+.guide-card h3 { margin: 0 0 6px; font-size: 17px; }
+.guide-card p { margin: 0 0 10px; color: var(--ink-2); font-size: 14px; }
+.guide-card a { font-size: 14px; }
+.organ-links { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
+.organ-links a { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; text-decoration: none; color: var(--ink-2); }
 
 @media (max-width: 700px) {
   .brand { font-size: 13px; }
